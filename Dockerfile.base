@@ -1,0 +1,7 @@
+FROM node:16.8.0
+
+WORKDIR /opt/node_app
+
+COPY . .
+
+RUN yarn

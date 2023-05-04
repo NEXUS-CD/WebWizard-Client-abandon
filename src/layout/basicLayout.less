@@ -1,0 +1,99 @@
+.lay {
+  height: 100%;
+  position: relative;
+  .lay_header {
+    margin: 0 auto;
+    width: 1440px;
+    height: 64px;
+    min-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2a2b31;
+    padding: 0 20px;
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    .layheaderTitle {
+      font-size: 20px;
+      color: #fff;
+      .logo {
+        height: 40px;
+        margin-right: 15px;
+      }
+    }
+
+    .search_form {
+      width: 500px;
+      margin-top: 25px;
+
+      .home_search {
+        width: 500px;
+        height: 36px;
+        background: #535459;
+        border: none;
+        outline: none;
+        border-radius: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+
+        :global {
+          .ant-input:focus {
+            border: none;
+            box-shadow: none;
+          }
+        }
+
+        .search_inp {
+          width: 420px;
+          background: #535459;
+          outline: none;
+          border: none;
+          height: 30px;
+          font-size: 16px;
+          color: #fff;
+
+          &::placeholder {
+            color: #999ea8;
+          }
+        }
+      }
+    }
+
+    .btn {
+      // button:first-of-type {
+      //   margin-right: 20px;
+      //   border: 2px solid #757677;
+      //   background: #3c3e40;
+      // }
+
+      button {
+        width: 72px;
+        height: 32px;
+        line-height: 0;
+        border: none;
+        outline: none;
+        color: #fff;
+        border-radius: 3px;
+      }
+
+      .login {
+        background-image: linear-gradient(90deg, #0b6fd6, #19a5ec);
+      }
+    }
+  }
+
+  .lay_content {
+    width: 1440px;
+    margin: 0 auto;
+    padding: 64px 24px 24px;
+    background: '#fff';
+    background: #f7f9fc;
+    min-height: 100%;
+    min-width: 900px;
+  }
+}
