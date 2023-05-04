@@ -13,6 +13,21 @@ export default defineConfig({
     immer: true,
     hmr: false,
   },
+  qiankun: {
+    master: {
+      // 注册子应用信息
+      apps: [
+        {
+          name: 'app1', // 唯一 id
+          entry: '//localhost:8001', // html entry
+        },
+        {
+          name: 'app2', // 唯一 id
+          entry: '//localhost:8002', // html entry
+        },
+      ],
+    },
+  },
   proxy: {
     '/api': {
       target: 'http://localhost:7001/',

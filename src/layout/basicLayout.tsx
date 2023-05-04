@@ -127,13 +127,13 @@ function BasicLayout(props: any) {
 
   return (
     <ConfigProvider locale={zhCN}>
-      {/* <Helmet>
+      <Helmet>
         <link
           rel="icon"
-          href={squareLogo}
+          // href={squareLogo}
           type="image/x-icon"
         />
-      </Helmet> */}
+      </Helmet>
       <div className={styles.lay}>
         <div className={styles.lay_header}>
           <div

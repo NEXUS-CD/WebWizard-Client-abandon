@@ -29,6 +29,13 @@ export const routes = [
         path: '/exception/:code',
         component: './exception',
       },
+      {
+        path: '/app1',
+        microApp: 'app1',
+        autoSetLoading: true,
+        className: 'myContainer',
+        wrapperClassName: 'myWrapper',
+      },
     ],
   },
 ];
