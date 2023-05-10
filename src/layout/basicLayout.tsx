@@ -1,26 +1,27 @@
-import { useEffect, useState } from 'react';
-import {
-  Image,
-  ConfigProvider,
-  Button,
-  Modal,
-  Dropdown,
-  message as Message,
-  Form,
-  Input,
-} from 'antd';
-import type { MenuProps } from 'antd';
-import { Helmet } from 'react-helmet';
-import zhCN from 'antd/es/locale/zh_CN';
-import { UserOutlined, SearchOutlined } from '@ant-design/icons';
-import { history, useSelector, useDispatch } from 'umi';
-import styles from './basicLayout.less';
-import { getUserApi } from '@/services/login';
-// import white_logo from '@/assets/images/white_logo.png';
-// import squareLogo from '@/assets/images/square_logo.jpg';
-import { isLoginApi } from '@/services/login';
+import whiteLogo from '@/assets/images/logo-white.png';
 import LoginForm from '@/pages/login';
+
+import { getUserApi } from '@/services/login';
+
+import { menuConfig } from '@/utils/constant';
+
+import { SearchOutlined, UserOutlined } from '@ant-design/icons';
+
+import type { MenuProps } from 'antd';
+
+import { Button, ConfigProvider, Dropdown, Form, Input, message as Message, Modal } from 'antd';
+
+import zhCN from 'antd/es/locale/zh_CN';
+
 import _ from 'lodash';
+
+import { useEffect, useState } from 'react';
+
+import { Helmet } from 'react-helmet';
+
+import { history, useDispatch, useSelector } from 'umi';
+
+import styles from './basicLayout.less';
 
 const FormItem = Form.Item;
 
@@ -31,6 +32,7 @@ function BasicLayout(props: any) {
   const userMsg = useSelector((state: any) => state.global.userMsg);
   const isLogining = useSelector((state: any) => state.global.isLogining);
   const [searchCon, setSearchCon] = useState<any>('');
+  const [curMenu, setCurMenu] = useState('');
 
   const items: MenuProps['items'] = [
     {
@@ -53,34 +55,10 @@ function BasicLayout(props: any) {
     dispatch({ type: 'global/save', LoginModelBoo: false });
   };
 
-  // 货物登陆用户信息
+  // 获取登陆用户信息
   const getUserMsg = async (params: { _id: string }) => {
     const res = await getUserApi(params);
     dispatch({ type: 'global/save', userMsg: res.data });
-  };
-
-  // 判断用户是否登录
-  const handleIsLogin = async () => {
-    const { data }: any = await isLoginApi();
-    switch (data.isLogining) {
-      case 'logining':
-        dispatch({ type: 'global/save', isLogining: true });
-        getUserMsg({ _id: data._id });
-        break;
-      case 'AccountOverDue':
-        // Message.error('账号已过期，请联系管理员');
-        dispatch({ type: 'global/save', isLogining: false });
-        if (window.location.pathname !== '/search') {
-          window.location.href = '/search';
-        }
-        break;
-      default:
-        dispatch({ type: 'global/save', isLogining: false });
-        if (window.location.pathname !== '/search') {
-          window.location.href = '/search';
-        }
-        break;
-    }
   };
 
   // 个人操作
@@ -115,14 +93,11 @@ function BasicLayout(props: any) {
       });
       return;
     }
-    // 为了实现浏览器回退到上一次搜索消息
-    window.location.href = `/searchDetail?searchCon=${encodeURIComponent(
-      _.trim(value.searchCon),
-    )}`;
   };
 
   useEffect(() => {
-    handleIsLogin();
+    console.log(333, window.location.pathname);
+    setCurMenu(window.location.pathname);
   }, []);
 
   return (
@@ -136,16 +111,32 @@ function BasicLayout(props: any) {
       </Helmet>
       <div className={styles.lay}>
         <div className={styles.lay_header}>
-          <div
-            className={styles.layheaderTitle}
-            onClick={() => history.push('/search')}
-          >
-            {/* <img
-              height={40}
-              src={white_logo}
-              className={styles.logo}
-            /> */}
-            <span>MINE</span>
+          <div className={styles.layheader_title}>
+            <div
+              className={styles.logo_box}
+              onClick={() => {
+                setCurMenu('');
+                history.push('/home');
+              }}
+            >
+              <img height={40} src={whiteLogo} className={styles.logo} />
+              <span>WebWizard</span>
+            </div>
+            <div className={styles.menu}>
+              {menuConfig.map((item) => {
+                return (
+                  <span
+                    onClick={() => {
+                      setCurMenu(item.path);
+                      history.push(item.path);
+                    }}
+                    className={curMenu === item.path ? styles.menu_item : ''}
+                  >
+                    {item.label}
+                  </span>
+                );
+              })}
+            </div>
           </div>
           <Form
             name="search"
@@ -165,21 +156,14 @@ function BasicLayout(props: any) {
                   />
                 </FormItem>
                 <Button htmlType="submit" type="link" size="small">
-                  <SearchOutlined
-                    style={{ color: '#999EA8', fontSize: 20 }}
-                    className={styles.icon}
-                  />
+                  <SearchOutlined style={{ color: '#999EA8', fontSize: 20 }} className={styles.icon} />
                 </Button>
               </div>
             </FormItem>
           </Form>
           <div className={styles.btn}>
             {isLogining ? (
-              <Dropdown
-                menu={{ items, onClick }}
-                arrow={{ pointAtCenter: true }}
-                placement="bottomRight"
-              >
+              <Dropdown menu={{ items, onClick }} arrow={{ pointAtCenter: true }} placement="bottomRight">
                 <a onClick={(e) => e.preventDefault()}>
                   <UserOutlined style={{ fontSize: '20px', color: '#fff' }} />
                   <span

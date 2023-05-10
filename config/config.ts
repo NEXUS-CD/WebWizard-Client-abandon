@@ -1,5 +1,6 @@
 import { defineConfig } from 'umi';
 import { routes } from './routes';
+
 export default defineConfig({
   // outputPath: 'dist',
   antd: {},
@@ -20,10 +21,12 @@ export default defineConfig({
         {
           name: 'app1', // 唯一 id
           entry: '//localhost:8001', // html entry
+          activeRule: '/app1',
         },
         {
-          name: 'app2', // 唯一 id
-          entry: '//localhost:8002', // html entry
+          name: 'chatgpt', // 唯一 id
+          entry: '//localhost:3000', // html entry
+          activeRule: '/chatgpt',
         },
       ],
     },

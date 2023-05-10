@@ -26,8 +26,8 @@ export const routes = [
         component: '@/pages/settings',
       },
       {
-        path: '/exception/:code',
-        component: './exception',
+        path: '/chatgpt',
+        component: './chatgpt',
       },
       {
         path: '/app1',
@@ -35,6 +35,18 @@ export const routes = [
         autoSetLoading: true,
         className: 'myContainer',
         wrapperClassName: 'myWrapper',
+      },
+      // {
+      //   path: '/subapp',
+      //   microApp: 'subapp',
+      //   microAppProps: {
+      //     wrapperClassName: 'iframe-wrapper',
+      //     mountElementId: 'subapp-container',
+      //   },
+      // },
+      {
+        path: '/exception/:code',
+        component: './exception',
       },
     ],
   },

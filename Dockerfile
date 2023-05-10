@@ -1,4 +1,4 @@
-FROM apt_threat_app_base
+FROM web_wizard_client_base
 
 WORKDIR /opt/node_app
 

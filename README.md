@@ -1,15 +1,13 @@
-# umi project
+1. 安装依赖
 
-## Getting Started
+`yarn`
 
-Install dependencies,
+2. 运行项目
 
-```bash
-$ yarn
-```
+`yarn dev`
 
-Start the dev server,
+3. 打包部署项目
 
-```bash
-$ yarn start
-```
+`sh ./deploy.sh base ` 初次部署 带 base 参数会先打基础镜像，再打业务镜像；当再次部署时，如果项目依赖没有发生变化，则可以不用带 base 参数，直接执行 `sh ./deploy.sh`,打包业务镜像并跑出容器。
+
+4. 直接访问服务器地址即可看到部署的项目；如http://124.222.8.184

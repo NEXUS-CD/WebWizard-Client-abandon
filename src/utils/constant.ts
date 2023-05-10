@@ -7,77 +7,15 @@
  * @List
  */
 
-import ic_location from '@/assets/images/ic_location.png';
+export const chatgptPath = 'http://124.222.8.184:3000';
 
-// 资产信息 tab
-export const propertyTabs = [
+export const menuConfig = [
   {
-    key: 'banner',
-    name: 'Banner',
+    label: 'ChatGpt',
+    path: '/chatgpt',
   },
   {
-    key: 'ssl',
-    name: 'SSL证书',
+    label: '项目1',
+    path: '/app1',
   },
 ];
-
-// 资产信息
-export const propertyMsg = [
-  {
-    key: 'port',
-    name: '端口',
-    type: 'tag',
-  },
-  {
-    key: 'discoverytime',
-    name: '探测时间',
-  },
-  {
-    key: 'location',
-    name: '地理位置',
-  },
-  {
-    key: 'org',
-    name: 'ORG',
-  },
-  {
-    key: 'isp',
-    name: 'ISP',
-  },
-  // {
-  //   key: 'tag',
-  //   name: '标签',
-  // },
-  {
-    key: 'asn',
-    name: 'ASN',
-  },
-  {
-    key: 'title',
-    name: '标题',
-  },
-];
-
-export const msgList = [
-  {
-    key: 'location',
-    name: '地理位置',
-    icon: ic_location,
-  },
-  {
-    key: 'asn',
-    name: 'ASN',
-    icon: ic_location,
-  },
-  {
-    key: 'ip_organization',
-    name: 'IP归属单位',
-    icon: ic_location,
-  },
-  {
-    key: 'isp',
-    name: '服务提供商',
-    icon: ic_location,
-  },
-];
-
